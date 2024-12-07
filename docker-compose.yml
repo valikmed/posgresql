@@ -1,10 +1,15 @@
-version: '3.1'
-
+version: '3.8'
 services:
   db:
-    image: postgres
-    ports:
-      - 5353:5353
-    restart: always
+    image: postgres:latest
+    container_name: db-1
     environment:
-      POSTGRES_PARSWORD : valikmed!
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: valikmed!
+      POSTGRES_DB: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+volumes:
+  postgres_data:
